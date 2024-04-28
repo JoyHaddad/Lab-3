@@ -57,6 +57,7 @@ h1 {
 }
 
 .xo {
+  cursor: pointer;
   color: black;
   font-weight: bold;
   font-size: 8em;
