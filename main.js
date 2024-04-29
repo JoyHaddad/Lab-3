@@ -3,6 +3,7 @@ const playerDisplay = document.querySelector('.display_player');
 let displayX = document.querySelector('.scoreX'); 
 let displayO = document.querySelector('.scoreO');
 const resetButton = document.querySelector('.reset');
+const newGame = document.querySelector('.new_game');
 
 let currentPlayer = 'X';
 playerDisplay.textContent = ` ${currentPlayer}`;  
@@ -99,3 +100,12 @@ function reset(){
 resetButton.addEventListener('click', function() {
     reset();
 });
+
+newGame.addEventListener('click', function(){
+    squares.forEach(square=>{
+        square.children[0].textContent = '';
+    });
+    turnsX = [];
+    turnsO = [];
+
+})
