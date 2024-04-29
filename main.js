@@ -6,6 +6,8 @@ const resetButton = document.querySelector('.reset');
 
 let currentPlayer = 'X';
 playerDisplay.textContent = ` ${currentPlayer}`;  
+let turnsX = [];
+let turnsO = [];
 
 function SquareClick() {
     squares.forEach(square => {
@@ -25,20 +27,16 @@ function SquareClick() {
                     }
                     updateScores();
                     squares.forEach(square => square.removeEventListener('click', SquareClick));
+                    
+                } else if(turnsX.length + turnsO.length === 9){
+                    console.log("It's a tie!");
+                    alert("It's a tie!");
                 }
             }
         });
     });
 }
 
-let turnsX = [];
-let turnsO = [];
-
-function resetTurns(){
-    turnsX = [];
-    turnsO = [];
-
-}
 
 function UpdatePlayer() {
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; 
@@ -94,6 +92,8 @@ function reset(){
     XScore = 0;
     OScore = 0;
     updateScores();
+    turnsX = [];
+    turnsO = [];
 }
 
 resetButton.addEventListener('click', function() {
