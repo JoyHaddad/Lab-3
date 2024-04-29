@@ -1,5 +1,7 @@
 const squares = document.querySelectorAll('.row div'); 
 const playerDisplay = document.querySelector('.display_player'); 
+let displayX = document.querySelector('.scoreX'); 
+let displayO = document.querySelector('.scoreO');
 
 let currentPlayer = 'X';
 playerDisplay.textContent = ` ${currentPlayer}`;  
@@ -15,6 +17,12 @@ function SquareClick() {
                 if (won) {
                     console.log(won + " wins!");
                     alert(won + " wins!");
+                    if(won === 'X'){
+                        XScore++;
+                    } else {
+                        OScore++;
+                    }
+                    updateScores();
                     squares.forEach(square => square.removeEventListener('click', SquareClick));
                 }
             }
@@ -22,10 +30,23 @@ function SquareClick() {
     });
 }
 
+let turnsX = [];
+let turnsO = [];
+
+function resetTurns(){
+    turnsX = [];
+    turnsO = [];
+
+}
 
 function UpdatePlayer() {
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; 
     playerDisplay.textContent = ` ${currentPlayer}`;  
+    if (currentPlayer === 'X') {
+        turnsX.push(this); // Store X moves
+    } else {
+        turnsO.push(this); // Store O moves
+    }
 }
 
 SquareClick();
@@ -56,4 +77,21 @@ function winner(){
         return null;
     }
 
+    let XScore = 0;
+    let OScore = 0;
+
+    function updateScores() {
+        displayX.textContent = XScore;
+        displayO.textContent = OScore;
+    }
+    
+function reset(){
+    squares.forEach(square=>{
+        square.children[0].textContent = '';
+    });
+
+    XScore = 0;
+    OScore = 0;
+    updateScores();
+}
 
