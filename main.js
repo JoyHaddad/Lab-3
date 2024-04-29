@@ -2,6 +2,7 @@ const squares = document.querySelectorAll('.row div');
 const playerDisplay = document.querySelector('.display_player'); 
 let displayX = document.querySelector('.scoreX'); 
 let displayO = document.querySelector('.scoreO');
+const resetButton = document.querySelector('.reset');
 
 let currentPlayer = 'X';
 playerDisplay.textContent = ` ${currentPlayer}`;  
@@ -95,3 +96,6 @@ function reset(){
     updateScores();
 }
 
+resetButton.addEventListener('click', function() {
+    reset();
+});
